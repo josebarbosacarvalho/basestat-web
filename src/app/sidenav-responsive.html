@@ -21,19 +21,17 @@
       fixedTopGap="56"
     >
       <mat-nav-list>
-        <a mat-list-item routerLink="." *ngFor="let nav of fillerNav"
-          >{{nav}}</a
-        >
+        <a mat-list-item routerLink=".">Actividade Económica</a>
       </mat-nav-list>
     </mat-sidenav>
 
     <mat-sidenav-content>
+      <!--
       <p *ngFor="let content of fillerContent">{{content}}</p>
+      -->
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
-
-<div *ngIf="!shouldRun">Please open on Stackblitz to see result</div>
 
 <!-- Copyright 2020 Google LLC. All Rights Reserved.
     Use of this source code is governed by an MIT-style license that
