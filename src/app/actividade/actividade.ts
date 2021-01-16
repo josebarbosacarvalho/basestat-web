@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { ActividadeService } from "../actividade.service";
 
 export interface PeriodicElement {
   name: string;
@@ -27,5 +28,9 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class Actividade {
   displayedColumns: string[] = ["position", "name", "weight", "symbol"];
-  dataSource = ELEMENT_DATA;
+  //dataSource = ELEMENT_DATA;
+
+  dataSource = this.actividadeService.getActividades();
+
+  constructor(private actividadeService: ActividadeService) {}
 }

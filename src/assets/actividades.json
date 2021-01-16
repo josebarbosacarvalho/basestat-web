@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Overnight",
+    "position": 25.99,
+    "weight": "Overnight",
+    "symbol": 25.99
+  },
+  {
+    "name": "2-Day",
+    "position": 9.99,
+    "weight": "Overnight",
+    "symbol": 25.99
+  },
+  {
+    "name": "Postal",
+    "position": 2.99,
+    "weight": "Overnight",
+    "symbol": 25.99
+  }
+]
