@@ -9,8 +9,7 @@ import { DemoMaterialModule } from "./app/material-module";
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from "@angular/material/form-field";
 
 // App components
-import { SidenavResponsiveExample } from "./app/sidenav-responsive";
-//import { Actividade } from "./app/actividade/actividade";
+import { SidenavResponsive } from "./app/sidenav-responsive";
 
 // Default MatFormField appearance to 'fill' as that is the new recommended approach and the
 // `legacy` and `standard` appearances are scheduled for deprecation in version 10.
@@ -25,9 +24,9 @@ import { SidenavResponsiveExample } from "./app/sidenav-responsive";
     MatNativeDateModule,
     ReactiveFormsModule
   ],
-  entryComponents: [SidenavResponsiveExample],
-  declarations: [SidenavResponsiveExample],
-  bootstrap: [SidenavResponsiveExample],
+  entryComponents: [SidenavResponsive],
+  declarations: [SidenavResponsive],
+  bootstrap: [SidenavResponsive],
   providers: [
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,

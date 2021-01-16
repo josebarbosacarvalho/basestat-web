@@ -7,12 +7,12 @@ import { ChangeDetectorRef, Component, OnDestroy } from "@angular/core";
   templateUrl: "sidenav-responsive.html",
   styleUrls: ["sidenav-responsive.css"]
 })
-export class SidenavResponsiveExample implements OnDestroy {
+export class SidenavResponsive implements OnDestroy {
   mobileQuery: MediaQueryList;
 
   fillerNav = Array.from({ length: 50 }, (_, i) => `Nav Item ${i + 1}`);
 
-  fillerContent = Array.from(
+  /*fillerContent = Array.from(
     { length: 50 },
     () =>
       `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
@@ -20,7 +20,7 @@ export class SidenavResponsiveExample implements OnDestroy {
        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`
-  );
+  );*/
 
   private _mobileQueryListener: () => void;
 
