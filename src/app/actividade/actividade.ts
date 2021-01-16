@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { ActividadeService } from "../actividade.service";
 
+/*
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -19,7 +20,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   { position: 8, name: "Oxygen", weight: 15.9994, symbol: "O" },
   { position: 9, name: "Fluorine", weight: 18.9984, symbol: "F" },
   { position: 10, name: "Neon", weight: 20.1797, symbol: "Ne" }
-];
+];*/
 
 @Component({
   selector: "app-actividade",
@@ -27,10 +28,10 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ["./actividade.css"]
 })
 export class Actividade {
-  displayedColumns: string[] = ["position", "name", "weight", "symbol"];
+  //displayedColumns: string[] = ["position", "name", "weight", "symbol"];
   //dataSource = ELEMENT_DATA;
 
-  dataSource = this.actividadeService.getActividades();
+  shippingCosts = this.actividadeService.getActividades();
 
   constructor(private actividadeService: ActividadeService) {}
 }
