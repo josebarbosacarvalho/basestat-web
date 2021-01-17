@@ -28,7 +28,7 @@ export class TableHttpExample implements AfterViewInit {
     this.exampleDatabase = new ExampleHttpDatabase(this._httpClient);
 
     // If the user changes the sort order, reset back to the first page.
-    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+    this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
 
     merge(this.sort.sortChange, this.paginator.page)
       .pipe(
@@ -36,7 +36,10 @@ export class TableHttpExample implements AfterViewInit {
         switchMap(() => {
           this.isLoadingResults = true;
           return this.exampleDatabase!.getRepoIssues(
-            this.sort.active, this.sort.direction, this.paginator.pageIndex);
+            this.sort.active,
+            this.sort.direction,
+            this.paginator.pageIndex
+          );
         }),
         map(data => {
           // Flip flag to show that loading has finished.
@@ -52,7 +55,8 @@ export class TableHttpExample implements AfterViewInit {
           this.isRateLimitReached = true;
           return observableOf([]);
         })
-      ).subscribe(data => this.data = data);
+      )
+      .subscribe(data => (this.data = data));
   }
 }
 
