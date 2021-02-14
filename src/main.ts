@@ -11,6 +11,7 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from "@angular/material/form-field";
 // App components
 import { SidenavResponsive } from "./app/sidenav-responsive";
 import { TableHttpExample } from "./app/table-http-example/table-http-example";
+import { Actividade } from "./app/actividade/actividade";
 //import { Actividade } from "./app/actividade/actividade";
 
 // Default MatFormField appearance to 'fill' as that is the new recommended approach and the
@@ -27,7 +28,7 @@ import { TableHttpExample } from "./app/table-http-example/table-http-example";
     ReactiveFormsModule
   ],
   entryComponents: [SidenavResponsive],
-  declarations: [SidenavResponsive, TableHttpExample],
+  declarations: [SidenavResponsive, TableHttpExample,Actividade],
   bootstrap: [SidenavResponsive],
   providers: [
     {
