@@ -51,11 +51,12 @@ export class Actividade implements AfterViewInit, OnInit {
           // Flip flag to show that loading has finished.
           this.isLoadingResults = false;
           this.isRateLimitReached = false;
-          this.resultsLength = data.total_count;
+          this.resultsLength = 1000; //data.total_count; // The service does not return max results, limited to 1000 results
 
           return data.items;
         }),
         catchError(error => {
+          //alert(JSON.stringify(error));
           this.isLoadingResults = false;
           // Catch if the GitHub API has reached its rate limit. Return empty data.
           this.isRateLimitReached = true;
@@ -67,6 +68,7 @@ export class Actividade implements AfterViewInit, OnInit {
 }
 
 export interface ActivitiesRankApi {
+  status: string;
   items: activityItem[];
   total_count: number;
 }
