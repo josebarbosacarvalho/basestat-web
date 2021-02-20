@@ -1,14 +1,20 @@
 <div class="actividade">
 	<h1>Actividade Económica da contratada</h1>
-	<div class="example-container mat-elevation-z8">
-		<div class="example-loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
-			<mat-spinner *ngIf="isLoadingResults"></mat-spinner>
-			<div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
-				openbase API rate limit has been reached. It will be reset in one minute.
-			</div>
-		</div>
+	<div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+		openbase server is paused. {{errorMessage}}
+	</div>
 
-		<div class="example-table-container">
+	<div class="example-loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
+		<mat-spinner *ngIf="isLoadingResults">
+		</mat-spinner>
+
+	</div>
+
+	<div class="example-container mat-elevation-z8">
+
+		<mat-paginator [length]="resultsLength" [pageSize]="20" *ngIf="!isRateLimitReached">
+		</mat-paginator>
+		<div class="example-table-container" *ngIf="!isRateLimitReached">
 
 
 			<table mat-table [dataSource]="data" class="example-table" matSort matSortActive="created"
@@ -37,6 +43,7 @@
 			</table>
 		</div>
 
-		<mat-paginator [length]="resultsLength" [pageSize]="20"></mat-paginator>
+		<mat-paginator [length]="resultsLength" [pageSize]="20" *ngIf="!isRateLimitReached">
+		</mat-paginator>
 	</div>
 </div>

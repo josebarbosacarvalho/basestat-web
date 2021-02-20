@@ -2,8 +2,25 @@ import { HttpClient } from "@angular/common/http";
 import { Component, ViewChild, AfterViewInit, OnInit } from "@angular/core";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
-import { merge, Observable, of as observableOf } from "rxjs";
-import { catchError, map, startWith, switchMap } from "rxjs/operators";
+import {
+  merge,
+  Observable,
+  of as observableOf,
+  of,
+  pipe,
+  range,
+  throwError,
+  timer,
+  zip
+} from "rxjs";
+import {
+  catchError,
+  map,
+  mergeMap,
+  retryWhen,
+  startWith,
+  switchMap
+} from "rxjs/operators";
 import pt from "@angular/common/locales/pt";
 import { registerLocaleData } from "@angular/common";
 
@@ -20,6 +37,7 @@ export class Actividade implements AfterViewInit, OnInit {
   resultsLength = 0;
   isLoadingResults = true;
   isRateLimitReached = false;
+  errorMessage = "";
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -51,14 +69,17 @@ export class Actividade implements AfterViewInit, OnInit {
           // Flip flag to show that loading has finished.
           this.isLoadingResults = false;
           this.isRateLimitReached = false;
-          this.resultsLength = 1000; //data.total_count; // The service does not return max results, limited to 1000 results
+          this.resultsLength = 1000; //data.total_count; // The API does not return max results, limited to 1000 results
 
           return data.items;
         }),
+        backoff(6, 250),
         catchError(error => {
           //alert(JSON.stringify(error));
+          //this.errorMessage = error.message;
+
           this.isLoadingResults = false;
-          // Catch if the GitHub API has reached its rate limit. Return empty data.
+          // Catch if the API has reached its rate limit. Return empty data.
           this.isRateLimitReached = true;
           return observableOf([]);
         })
@@ -77,6 +98,18 @@ export interface activityItem {
   activity: string;
   amount: number;
   percentage: number;
+}
+
+export function backoff(maxTries: number, delay: number) {
+  return pipe(
+    retryWhen(attempts =>
+      zip(range(1, maxTries + 1), attempts).pipe(
+        mergeMap(([i, err]) => (i > maxTries ? throwError(err) : of(i))),
+        map(i => i * i),
+        mergeMap(v => timer(v * delay))
+      )
+    )
+  );
 }
 
 /** An example database that the data source uses to retrieve data for the table. */
