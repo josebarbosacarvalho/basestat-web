@@ -12,6 +12,7 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from "@angular/material/form-field";
 import { SidenavResponsive } from "./app/sidenav-responsive";
 import { TableHttpExample } from "./app/table-http-example/table-http-example";
 import { Actividade } from "./app/actividade/actividade";
+import { RouterModule } from "@angular/router";
 //import { Actividade } from "./app/actividade/actividade";
 
 // Default MatFormField appearance to 'fill' as that is the new recommended approach and the
@@ -20,6 +21,11 @@ import { Actividade } from "./app/actividade/actividade";
 @NgModule({
   imports: [
     BrowserModule,
+    RouterModule.forRoot([
+      { path: "actividade", component: SidenavResponsive },
+      { path: "", redirectTo: "/actividade", pathMatch: "full" }
+    ]),
+
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
@@ -28,7 +34,7 @@ import { Actividade } from "./app/actividade/actividade";
     ReactiveFormsModule
   ],
   entryComponents: [SidenavResponsive],
-  declarations: [SidenavResponsive, TableHttpExample,Actividade],
+  declarations: [SidenavResponsive, TableHttpExample, Actividade],
   bootstrap: [SidenavResponsive],
   providers: [
     {
