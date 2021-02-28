@@ -10,15 +10,21 @@
 		<mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
 			fixedTopGap="56">
 			<mat-nav-list>
-				<a mat-list-item routerLink=".">Actividade Económica da Contratada</a>
+				<a mat-list-item routerLink="actividades/contratadas">Actividades Económicas das Contratadas</a>
+				<a mat-list-item routerLink="actividades/contratantes">Actividades Económicas das Contratantes</a>
+				<a mat-list-item routerLink="entidades/contratadas">Entidades Contratadas</a>
+				<a mat-list-item routerLink="entidades/contratantes">Entidades Contratantes</a>
 			</mat-nav-list>
 		</mat-sidenav>
 
 		<mat-sidenav-content>
 			<!--
       <p *ngFor="let content of fillerContent">{{content}}</p>
+      <app-actividade></app-actividade>
       -->
-			<app-actividade></app-actividade>
+			<router-outlet></router-outlet>
+
+
 
 		</mat-sidenav-content>
 	</mat-sidenav-container>

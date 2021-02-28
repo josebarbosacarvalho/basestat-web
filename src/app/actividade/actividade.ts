@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, ViewChild, AfterViewInit, OnInit } from "@angular/core";
-import { MatPaginator } from "@angular/material/paginator";
+import { Router, ActivatedRoute, ParamMap } from "@angular/router";
+import { MatPaginator, PageEvent } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import {
   merge,
@@ -42,10 +43,16 @@ export class Actividade implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private _httpClient: HttpClient) {}
+  constructor(private _httpClient: HttpClient, private route: ActivatedRoute) {}
 
   ngOnInit() {
     registerLocaleData(pt);
+
+    /*
+    this.route.queryParams.subscribe(params => {
+      //this.page =
+      this.paginator.pageIndex = params["pag"];
+    });*/
   }
 
   ngAfterViewInit() {
@@ -73,7 +80,7 @@ export class Actividade implements AfterViewInit, OnInit {
 
           return data.items;
         }),
-        backoff(6, 250),
+        backoff(6, 500),
         catchError(error => {
           //alert(JSON.stringify(error));
           //this.errorMessage = error.message;

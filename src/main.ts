@@ -22,8 +22,9 @@ import { RouterModule } from "@angular/router";
   imports: [
     BrowserModule,
     RouterModule.forRoot([
-      { path: "actividade", component: SidenavResponsive },
-      { path: "", redirectTo: "/actividade", pathMatch: "full" }
+      { path: "actividades/contratadas", component: Actividade },
+      { path: "actividades/contratantes", component: TableHttpExample },
+      { path: "", redirectTo: "/actividades/contratadas", pathMatch: "full" }
     ]),
 
     BrowserAnimationsModule,
