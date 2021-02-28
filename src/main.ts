@@ -23,6 +23,7 @@ import { RouterModule } from "@angular/router";
     BrowserModule,
     RouterModule.forRoot([
       { path: "actividades/contratadas", component: Actividade },
+      // { path: "actividades/contratadas/:pageId", component: Actividade },
       { path: "actividades/contratantes", component: TableHttpExample },
       { path: "", redirectTo: "/actividades/contratadas", pathMatch: "full" }
     ]),

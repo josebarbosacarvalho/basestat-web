@@ -3,6 +3,7 @@ import { Component, ViewChild, AfterViewInit, OnInit } from "@angular/core";
 import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 import { MatPaginator, PageEvent } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
+import { Location } from "@angular/common";
 import {
   merge,
   Observable,
@@ -39,23 +40,29 @@ export class Actividade implements AfterViewInit, OnInit {
   isLoadingResults = true;
   isRateLimitReached = false;
   errorMessage = "";
+  currentPage = 0;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private _httpClient: HttpClient, private route: ActivatedRoute) {}
+  constructor(
+    private _httpClient: HttpClient,
+    private route: ActivatedRoute,
+    private location: Location,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     registerLocaleData(pt);
-
-    /*
-    this.route.queryParams.subscribe(params => {
-      //this.page =
-      this.paginator.pageIndex = params["pag"];
-    });*/
   }
 
   ngAfterViewInit() {
+    this.route.queryParams.subscribe(params => {
+      this.currentPage = Number(params["pag"]);
+    });
+
+    this.paginator.pageIndex = this.currentPage;
+
     this.exampleDatabase = new ExampleHttpDatabase(this._httpClient);
 
     // If the user changes the sort order, reset back to the first page.
@@ -77,6 +84,10 @@ export class Actividade implements AfterViewInit, OnInit {
           this.isLoadingResults = false;
           this.isRateLimitReached = false;
           this.resultsLength = 1000; //data.total_count; // The API does not return max results, limited to 1000 results
+
+          this.location.replaceState(
+            "actividades/contratadas?pag=" + this.paginator.pageIndex
+          );
 
           return data.items;
         }),
