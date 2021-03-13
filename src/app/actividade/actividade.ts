@@ -113,6 +113,8 @@ export interface ActivitiesRankApi {
 }
 
 export interface activityItem {
+  code: string;
+  levelx: string;
   activity: string;
   amount: number;
   percentage: number;

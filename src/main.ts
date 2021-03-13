@@ -12,6 +12,7 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from "@angular/material/form-field";
 import { SidenavResponsive } from "./app/sidenav-responsive";
 import { TableHttpExample } from "./app/table-http-example/table-http-example";
 import { Actividade } from "./app/actividade/actividade";
+import { Empresa } from "./app/empresa/empresa";
 import { RouterModule } from "@angular/router";
 //import { Actividade } from "./app/actividade/actividade";
 
@@ -23,6 +24,7 @@ import { RouterModule } from "@angular/router";
     BrowserModule,
     RouterModule.forRoot([
       { path: "actividades/contratadas", component: Actividade },
+      { path: "empresas/contratadas", component: Empresa },
       // { path: "actividades/contratadas/:pageId", component: Actividade },
       { path: "actividades/contratantes", component: TableHttpExample },
       { path: "", redirectTo: "/actividades/contratadas", pathMatch: "full" }
@@ -36,7 +38,7 @@ import { RouterModule } from "@angular/router";
     ReactiveFormsModule
   ],
   entryComponents: [SidenavResponsive],
-  declarations: [SidenavResponsive, TableHttpExample, Actividade],
+  declarations: [SidenavResponsive, TableHttpExample, Actividade, Empresa],
   bootstrap: [SidenavResponsive],
   providers: [
     {
