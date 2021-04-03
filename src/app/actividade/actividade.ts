@@ -113,11 +113,9 @@ export interface ActivitiesRankApi {
 }
 
 export interface activityItem {
-  code: string;
-  levelx: string;
-  activity: string;
+  id: string;
+  name: string;
   amount: number;
-  percentage: number;
 }
 
 export function backoff(maxTries: number, delay: number) {

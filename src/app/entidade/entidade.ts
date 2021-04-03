@@ -27,11 +27,11 @@ import pt from "@angular/common/locales/pt";
 import { registerLocaleData } from "@angular/common";
 
 @Component({
-  selector: "app-empresa",
-  templateUrl: "./empresa.html",
-  styleUrls: ["./empresa.css"]
+  selector: "app-entidade",
+  templateUrl: "./entidade.html",
+  styleUrls: ["./entidade.css"]
 })
-export class Empresa implements AfterViewInit, OnInit {
+export class Entidade implements AfterViewInit, OnInit {
   displayedColumns: string[] = ["activity", "amount", "percentage"];
   exampleDatabase: ExampleHttpDatabase | null;
   data: activityItem[] = [];
@@ -142,7 +142,7 @@ export class ExampleHttpDatabase {
     page: number
   ): Observable<ActivitiesRankApi> {
     const href =
-      "https://f2o3rbv3zd.execute-api.eu-west-1.amazonaws.com/prd/getactivitiesrank";
+      "https://f2o3rbv3zd.execute-api.eu-west-1.amazonaws.com/prd/getsuppliers";
     const requestUrl = `${href}?page=${page}`;
 
     return this._httpClient.get<ActivitiesRankApi>(requestUrl);
