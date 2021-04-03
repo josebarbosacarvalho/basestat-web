@@ -32,7 +32,7 @@ import { registerLocaleData } from "@angular/common";
   styleUrls: ["./entidade.css"]
 })
 export class Entidade implements AfterViewInit, OnInit {
-  displayedColumns: string[] = ["activity", "amount", "percentage"];
+  displayedColumns: string[] = ["name", "amount"];
   exampleDatabase: ExampleHttpDatabase | null;
   data: activityItem[] = [];
 
@@ -86,7 +86,7 @@ export class Entidade implements AfterViewInit, OnInit {
           this.resultsLength = 1000; //data.total_count; // The API does not return max results, limited to 1000 results
 
           this.location.replaceState(
-            "actividades/contratadas?pag=" + this.paginator.pageIndex
+            "entidades/contratadas?pag=" + this.paginator.pageIndex
           );
 
           return data.items;
@@ -113,11 +113,9 @@ export interface ActivitiesRankApi {
 }
 
 export interface activityItem {
-  code: string;
-  levelx: string;
-  activity: string;
+  id: string;
+  name: string;
   amount: number;
-  percentage: number;
 }
 
 export function backoff(maxTries: number, delay: number) {
